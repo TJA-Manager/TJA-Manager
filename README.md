@@ -63,7 +63,7 @@
 <h3 id="tjamgr">TJA Manager</h3>
 <p>Copyright (c) 2025 BeaniCraft</p>
 
-<p>License: <a >MIT</a>
+<p>License: <a href="https://github.com/TJA-Manager/TJA-Manager?tab=MIT-1-ov-file">MIT</a>
 
 <hr width="300" align="left">
 <!-- ==== -->
