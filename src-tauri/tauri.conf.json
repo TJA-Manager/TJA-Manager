@@ -1,0 +1,44 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "TJA Manager",
+  "version": "0.1.0",
+  "identifier": "com.tjamgr.beanicraft",
+  "build": {
+    "beforeDevCommand": "npm run dev",
+    "devUrl": "http://localhost:1420",
+    "beforeBuildCommand": "npm run build",
+    "frontendDist": "../build"
+  },
+  "app": {
+    "windows": [
+      {
+        "title": "TJA Manager",
+        "width": 1030,
+        "height": 660,
+        "minWidth": 1030,
+        "minHeight": 660
+      }
+    ],
+    "security": {
+      "csp": null
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": ["nsis","deb","appimage"],
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ],
+    "windows": {
+      "nsis": {
+        "headerImage": "icons/installheader.bmp",
+        "sidebarImage": "icons/installbanner.bmp",
+        "installerIcon": "icons/installicon.ico"
+      }
+    }
+  }
+}

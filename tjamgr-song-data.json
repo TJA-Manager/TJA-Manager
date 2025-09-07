@@ -1,0 +1,15 @@
+{
+	"descheader": "header",
+	"descbody": "line1\nline2\nline3",
+	"warndisturbing": true,
+	"warnseizure": true,
+	"hidediff": {
+		"easy": false,
+		"normal": false,
+		"hard": false,
+		"oni": false,
+		"edit": true,
+		"dan": false,
+		"tower": false
+	}	
+}

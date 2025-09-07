@@ -1,5 +1,5 @@
 <div align="center">
-<!--<img src="https://github.com/TJA-Manager/TJA-Manager/blob/main/src/lib/images/logo.png?raw=true" alt="TJAMGR logo">-->
+<img src="https://github.com/TJA-Manager/TJA-Manager/blob/main/src/lib/images/logo.png?raw=true" alt="TJAMGR logo">
 
 <h3 align="center">A hassle free tool to download and manage TJA files from git repos.</h3>
 
@@ -35,11 +35,11 @@
 	<li>Warnings for chart content. (Explicit Lyrics, Flashing Lights, etc.)</li>
 	<li>Checks charts for simulator compatibility, gimmicks, and extra files.</li>
 </ul>
-
 <!-- ============== -->
 
 <!-- ============== -->
 <h2 id="contributing">Contributing</h2>
+[WIP]
 <!-- ============== -->
 
 <!-- ============== -->
