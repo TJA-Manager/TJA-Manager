@@ -3,7 +3,7 @@
 
 <h3 align="center">A hassle free tool to download and manage TJA files from git repos.</h3>
 
-<img src="https://img.shields.io/badge/license-MIT-e6722b?style=flat&labelColor=1f1f1f" alt="license: MIT"/>
+<img src="https://img.shields.io/badge/license-GPL-3.0-e6722b?style=flat&labelColor=1f1f1f" alt="license: GPL-3.0"/>
 <img src="https://img.shields.io/github/issues/TJA-Manager/TJA-Manager?style=flat&labelColor=1f1f1f" alt="issues - TJA-Manager">
 <img src="https://img.shields.io/github/stars/TJA-Manager/TJA-Manager?style=flat&labelColor=1f1f1f" alt="stars - TJA-Manager">
 <img src="https://img.shields.io/github/forks/TJA-Manager/TJA-Manager?style=social?style=flat&labelColor=1f1f1f" alt="forks - TJA-Manager">
