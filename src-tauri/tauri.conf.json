@@ -1,22 +1,22 @@
 {
-  "$schema": "https://schema.tauri.app/config/2",
+  "$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
   "productName": "TJA Manager",
-  "version": "0.1.0",
-  "identifier": "com.tjamgr.beanicraft",
+  "version": "0.1.0-alpha",
+  "identifier": "com.beanicraft.tjamgr",
   "build": {
+    "frontendDist": "../build",
+    "devUrl": "http://localhost:5173",
     "beforeDevCommand": "npm run dev",
-    "devUrl": "http://localhost:1420",
-    "beforeBuildCommand": "npm run build",
-    "frontendDist": "../build"
+    "beforeBuildCommand": "npm run build"
   },
   "app": {
     "windows": [
       {
         "title": "TJA Manager",
-        "width": 1030,
-        "height": 660,
-        "minWidth": 1030,
-        "minHeight": 660
+        "width": 1050,
+        "height": 650,
+        "minWidth": 1050,
+        "minHeight": 650
       }
     ],
     "security": {

@@ -1,10 +1,56 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+
 
 @import '@skeletonlabs/skeleton';
-@import '@skeletonlabs/skeleton/optional/presets';
-@import '$lib/themes/tjamgrtheme.css';
+@import '@skeletonlabs/skeleton-svelte';
 
-@source '../node_modules/@skeletonlabs/skeleton-svelte/dist';
+/* Skeleton Themes */
+@import '@skeletonlabs/skeleton/themes/catppuccin';
+@import '@skeletonlabs/skeleton/themes/cerberus';
+@import '@skeletonlabs/skeleton/themes/concord';
+@import '@skeletonlabs/skeleton/themes/crimson';
+@import '@skeletonlabs/skeleton/themes/fennec';
+@import '@skeletonlabs/skeleton/themes/hamlindigo';
+@import '@skeletonlabs/skeleton/themes/legacy';
+@import '@skeletonlabs/skeleton/themes/mint';
+@import '@skeletonlabs/skeleton/themes/modern';
+@import '@skeletonlabs/skeleton/themes/mona';
+@import '@skeletonlabs/skeleton/themes/nosh';
+@import '@skeletonlabs/skeleton/themes/nouveau';
+@import '@skeletonlabs/skeleton/themes/pine';
+@import '@skeletonlabs/skeleton/themes/reign';
+@import '@skeletonlabs/skeleton/themes/rocket';
+@import '@skeletonlabs/skeleton/themes/rose';
+@import '@skeletonlabs/skeleton/themes/sahara';
+@import '@skeletonlabs/skeleton/themes/seafoam';
+@import '@skeletonlabs/skeleton/themes/terminus';
+@import '@skeletonlabs/skeleton/themes/vintage';
+@import '@skeletonlabs/skeleton/themes/vox';
+@import '@skeletonlabs/skeleton/themes/wintry'; 
+
+/* Custom Themes */
+@import '$lib/themes/tjamgr.css';
+
+@custom-variant dark (&:where([data-mode="dark"], [data-mode="dark"] *));
+
+@theme {  
+    --breakpoint-sm: 40rem;
+    --breakpoint-md: 50rem;
+    --breakpoint-lg: 70rem;
+    --breakpoint-xl: 90rem;
+    --breakpoint-2xl: 110rem;
+    --text-base: 12px;
+    --text-lg: 14px;
+    --text-xl: 16px;
+    --text-2xl: 18px;
+    --text-3xl: 20px;
+    --text-4xl: 22px;
+    --text-5xl: 24px;
+    --text-6xl: 26px;
+    --text-7xl: 28px;
+    --text-8xl: 30px;
+    --text-9xl: 32px;
+}
 
 @font-face {
    font-family: MochiyPopOne;
@@ -13,14 +59,44 @@
 
 body {
     font-family: MochiyPopOne;
-    font-size: 14px;
+    font-size: 12px;
 }
 
-hr {@apply border-primary-400 p-2 mt-3;}
+/* Primary text styling */
+.anchor {@apply underline underline-offset-2 decoration-2;}
+a {@apply anchor;}
+u {@apply underline underline-offset-2 decoration-2;}
+h1 {@apply text-5xl;}
+h2 {@apply text-4xl;}
+h3 {@apply text-3xl;}
+h4 {@apply text-2xl;}
+h5 {@apply text-xl;}
+h6 {@apply text-lg;}
+ul {@apply text-primary-500 list-inside list-disc;}
+ol {@apply text-primary-500 list-inside list-decimal;}
 
-ul {@apply list-disc list-inside;}
-a {@apply text-primary-400 underline;}
+/* Niche text styling */
+blockquote {@apply blockquote not-italic;}
+pre {@apply pre blockquote p-2 pl-[11px] not-italic whitespace-pre-wrap wrap-break-word;}
+code {@apply code;}
+kbd {@apply kbd;}
+mark {@apply mark;}
+del {@apply del;}
+ins {@apply ins;}
 
-.head1 {@apply text-primary-400; font-size: 24px;}
-.head2 {@apply text-primary-400; font-size: 20px;}
-.head3 {@apply text-primary-400; font-size: 16px;}
+/* Form styling */
+label {@apply label;}
+input {@apply input;}
+textarea {@apply textarea;}
+select {@apply select;}
+
+hr {@apply my-2 hr border-primary-400;}
+
+.card {@apply p-2.5 m-2;}
+.badge {@apply p-1 m-0 border-2 gap-1;}
+
+.btn-action {@apply preset-filled-primary-500;}
+.btn-download {@apply preset-filled-success-500;}
+.btn-repeat {@apply preset-filled-surface-500;}
+.btn-destructive {@apply preset-filled-error-500;}
+.btn-ghost {@apply hover:preset-tonal;}

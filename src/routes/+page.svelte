@@ -1,114 +1,96 @@
-<script>
-  import { open } from '@tauri-apps/plugin-dialog';
-  import { Navigation } from '@skeletonlabs/skeleton-svelte';
-  import { Tooltip } from '@skeletonlabs/skeleton-svelte';
+<script lang="ts">
+    import { Navigation } from '@skeletonlabs/skeleton-svelte';
+    import { House, Download, Folders, FilePenLine, Wrench, Settings, Info } from 'lucide-svelte';
 
-  // Pages
-  import TJAsTab from '$lib/pages/TJAsTab.svelte';
-  import AboutTab from '$lib/pages/AboutTab.svelte';
+    import NavTile from '$lib/components/NavTile.svelte';
 
-  // Images
-  import logoUrl from '$lib/images/logo.png';
+    import HomeTab from '$lib/pages/HomeTab.svelte';
+    import ChartingToolsTab from '$lib/pages/ChartingToolsTab.svelte';
+    import CloneRepoTab from '$lib/pages/CloneRepoTab.svelte';
+    import UITestingTab from '$lib/pages/UITestingTab.svelte';
+    import SettingsTab from '$lib/pages/SettingsTab.svelte';
+    import InfoTab from '$lib/pages/InfoTab.svelte';
 
-  // Lucide icons
-  import { House } from 'lucide-svelte';
-  import { Globe } from 'lucide-svelte';
-  import { Info } from 'lucide-svelte';
+    let debugMode = $state(true);
+    let downloadSongsState = $state("null");
+    let cloneRepoState = $state("null");
+    let themeLoading = $state(false);
 
-  import { WifiOff } from 'lucide-svelte';
-  
-  import { FolderSearch } from 'lucide-svelte';
-  import { RefreshCw } from 'lucide-svelte';
-    
-  // Navigation/tooltip state
-  let value = $state('home');
-  let infoHome = $state(false);
-  let infoTJA = $state(false);
-  let infoAbout = $state(false);
-
-  let currentSimPath = $state("");
-
-  const getSimPath = async () => {
-    const selectedDirectory = await open({
-      directory: true
-    })
-    
-    if (selectedDirectory === null) {
-      // User canceled the dialog
-      console.log('Folder selection canceled.');
-    } else {
-      // User selected a folder
-      console.log('Selected folder:', selectedDirectory);
-      currentSimPath = selectedDirectory;
-      // You can now use the 'selectedDirectory' path for your application's logic
-    }
-
-    selectedDirectory
-  }
+    let navValue = $state("home");
 </script>
 
-<div class="grid w-full">
-  <!-- Navigation -->
-  <div class="fixed h-screen">
-    <Navigation.Rail width="w-[72px]" {value} onValueChange={(newValue) => (value = newValue)}>
-      {#snippet header()}
-        <Tooltip
-          open={infoHome}
-          onOpenChange={(e) => (infoHome = e.open)}
-          positioning={{ placement: 'top' }}
-          triggerBase="underline"
-          contentBase="card preset-filled p-4"
-          openDelay={200}
-          arrow
-        >
-        {#snippet trigger()}<Navigation.Tile id="home"><House class="mx-auto"/><p>Home</p></Navigation.Tile>{/snippet}
-        {#snippet content()}This is a tooltip.{/snippet}
-      </Tooltip>
-        
-        
-        
-        <!--<Navigation.Tile id="home"><House class="mx-auto"/><p>Home</p></Navigation.Tile>-->
-        <Navigation.Tile id="tjas"><Globe class="mx-auto"/><p>Browse TJAs</p></Navigation.Tile>
-      {/snippet}
-      
-      {#snippet tiles()}
-      <!-- Don't know why this breaks if this is deleted, but okay -->
-      {/snippet}
+<main class="w-full flex">
+    <aside class="h-screen sticky top-0">
+        <Navigation layout="rail" class="w-[84px] p-1">
+            <Navigation.Header>
+                <NavTile bind:navValue={navValue} tileId="home" tileSize="full">
+                    {#snippet content()}<House/> <span>Home</span>{/snippet}
+                </NavTile>
+                <NavTile bind:navValue={navValue} bind:tileState={cloneRepoState} tileId="charting-tools" tileSize="full">
+                    {#snippet content()}<FilePenLine/> <span>Charting Tools</span>{/snippet}
+                </NavTile>
+                <hr>
+                <NavTile bind:navValue={navValue} bind:tileState={downloadSongsState} tileId="download-songs" tileSize="full">
+                    {#snippet content()}<Download/> <span>Download Songs</span>{/snippet}
+                </NavTile>
+                <NavTile bind:navValue={navValue} bind:tileState={cloneRepoState} tileId="clone-repo" tileSize="full">
+                    {#snippet content()}<Folders/> <span>Clone Repo</span>{/snippet}
+                </NavTile>                
+                {#if debugMode === true}
+                    <hr>
+                    <NavTile bind:navValue={navValue} tileId="ui-testing" tileSize="full">
+                        {#snippet content()}<Wrench/> <span>UI Testing</span>{/snippet}
+                    </NavTile>
+                {/if}
+            </Navigation.Header>
 
-      {#snippet footer()}
-        <Navigation.Tile id="about"><Info class="mx-auto"/><p>About</p></Navigation.Tile>
-      {/snippet}
-    </Navigation.Rail>
-  </div>
-  
-  <!-- Content -->
-  <div class="py-[10px] pl-[82px] pr-[10px] z-0"> 
-    {#if value === "home"}
-      <div> 
-        <img src={logoUrl} alt="TJAMGR logo" class="mx-auto mb-3">
-        
-        <hr>
-        
-        <div class="card p-4 preset-outlined-surface-500">
-          <h1 class="head1">Welcome to TJA Manager!</h1>
-          <hr>
-          <p><b>Current songs folder path:</b> {currentSimPath}</p>
-          <hr class="w-1/2">
-          <button type="button" class="btn btn-sm preset-filled-primary-500" onclick={getSimPath}><FolderSearch/>Get songs folder path</button>  
-        </div>
-      </div>
-    {/if}
-      
-    {#if value === "tjas"}
-      <TJAsTab/>
-    {/if}
+            <Navigation.Content>
+                <Navigation.Menu>
+                    <!-- Keep this empty to add space between the navrail's header and footer -->
+                </Navigation.Menu>
+            </Navigation.Content>
 
-    {#if value === "about"}
-      <AboutTab/>
-    {/if}
-  </div>
-</div>
+            <Navigation.Footer>
+                <section class="grid grid-cols-2 gap-1">
+                    <NavTile bind:navValue={navValue} tileId="settings" tileSize="small">
+                        {#snippet content()}<Settings/>{/snippet}
+                    </NavTile>
+                    <NavTile bind:navValue={navValue} tileId="info" tileSize="small">
+                        {#snippet content()}<Info/>{/snippet}
+                    </NavTile>
+                </section>
+            </Navigation.Footer>
+        </Navigation>
+    </aside>
+
+    <article class="grow p-2.5">
+        {#if navValue === "home"}
+            <HomeTab bind:navValue={navValue}/>
+        {/if}
+
+        {#if navValue === "charting-tools"}
+            <ChartingToolsTab/>
+        {/if}
+
+        {#if navValue === "download-songs"}
+            VALUE: {navValue}
+        {/if}
+
+        <CloneRepoTab navValue={navValue} bind:tileState={cloneRepoState}/>
+
+        {#if navValue === "ui-testing"}
+            <UITestingTab/>
+        {/if}
+
+        {#if navValue === "settings"}
+            <SettingsTab/>
+        {/if}
+
+        {#if navValue === "info"}
+            <InfoTab/>
+        {/if}
+    </article>
+</main>
 
 <style>
-
-</style> 
+</style>
